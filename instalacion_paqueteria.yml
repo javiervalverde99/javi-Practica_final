@@ -1,0 +1,29 @@
+- name: "Plabook instalar paqueteria en los nodos dependiendo del grupo"
+  hosts: dev, test, prod
+  vars:
+    paqueteria:
+      - vim
+      - make
+      - net-tools
+
+  tasks:
+    - name: "Instalar paqueteria en el grupo de prod"
+      yum:
+        name: '*'
+        state: latest
+      when: "prod" in group_names
+    
+    - name: "Instalar paqueteria en el grupo de test"
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ paqueteria }}"
+      when: "test" in group_names
+    
+    - name: "Instalar paqueteria en el grupo de dev"
+      yum:
+        name: 
+          - '@Development tools'
+        state: latest
+      when: "dev" in group_names
+      
