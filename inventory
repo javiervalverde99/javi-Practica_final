@@ -1,0 +1,17 @@
+[dev]
+lab-awx04.uclm.es
+
+[test]
+lab-awx04.uclm.es
+
+[proxy]
+lab-awx04.uclm.es
+
+[prod]
+lab-awx04.uclm.es
+
+[webservers:children]
+dev
+test
+proxy
+prod
