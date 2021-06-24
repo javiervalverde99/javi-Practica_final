@@ -1,0 +1,11 @@
+- name: "Uso de los facts con ansible"
+  hosts: dev
+  tasks:
+    - name: Template a file to /etc/files.conf
+      template:
+        src: /templates/extraccion_datos.txt.j2
+        dest: /tmp/extraccion_datos.txt
+        owner: root
+        group: root
+        mode: '0777'
+        
